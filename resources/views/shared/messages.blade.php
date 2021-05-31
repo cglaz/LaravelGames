@@ -5,3 +5,13 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+
+@if ($message = session()->get('Sukces'))
+    <div class="alert alert-warning text-center" role="alert">
+        {{ $message }}
+    </div>
+@elseif ($message = session()->get('Niepowodzenie'))
+<div class="alert alert-danger text-center" role="alert">
+    {{ $message }}
+</div>
+@endif
