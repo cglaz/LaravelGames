@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterGameTable extends Migration
+class AlterGamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -28,10 +28,10 @@ class AlterGameTable extends Migration
     public function down()
     {
         Schema::table('games', function (Blueprint $table) {
-           $table->string('title', 100)->change();
-           $table->float('score');
-           $table->string('publisher')->comment('game publisher');
-           $table->dropIndex('games_title_index');
+            $table->string('title', 100)->change();
+            $table->float('score');
+            $table->string('publisher')->comment('game publisher');
+            $table->dropIndex('games_title_index');
         });
     }
 }

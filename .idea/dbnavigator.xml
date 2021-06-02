@@ -33,7 +33,7 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="2ccc03d8-3e37-460f-9756-c5ff53c061e3">
       <console name="gamesworldDB" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT *
-FROM migrations;]]></console>
+FROM geners;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -52,6 +52,9 @@ FROM migrations;]]></console>
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/db/efc0f4fc-4a10-4e8b-be2d-3c363beebc98/console.sql" connection-id="2ccc03d8-3e37-460f-9756-c5ff53c061e3" session-id="MAIN" current-schema="main" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />

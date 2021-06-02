@@ -16,16 +16,14 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->text('description')->nullable();
-            $table->string('publisher', 100)->comment('game publisher');
-            $table->float('score')->nullable();
+            $table->float('score');
+            $table->string('publisher')->comment('game publisher');
             $table->timestamps();
         });
-
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations
      *
      * @return void
      */
