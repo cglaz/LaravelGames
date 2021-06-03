@@ -18,9 +18,44 @@ class GameController extends Controller
 
     public function index(): View
     {
+//        $games = DB::table('games')
+//            ->select('id', 'title', 'score', 'genre_id')
+//            ->get();
+
         $games = DB::table('games')
-            ->select('id', 'title', 'score', 'genre_id')
+            ->join('genres', 'games.genre_id', '=', 'genres.id')
+            ->select('games.id', 'games.title', 'games.score', 'genres.name as genre_name')
             ->get();
+
+        $bestGames = DB::table('games')
+            ->join('genres', 'games.genre_id', '=', 'genres.id')
+            ->select('games.id', 'games.title', 'games.score', 'genres.name as genre_name')
+            ->where('score', '>', 9)
+            ->get();
+
+//        $query = DB::table('games')
+//            ->select('id', 'title', 'score', 'genre_id')
+//            ->where([
+//                ['score', '>', 5],
+//                ['id', '>', 44]
+//            ]);
+
+//        $query = DB::table('games')
+//            ->select('id', 'title', 'score', 'genre_id')
+//            ->where('score', '>', '6')
+//            ->orWhere('id', 55);
+
+//        $query = DB::table('games')
+//            ->select('id', 'title', 'score', 'genre_id')
+//            ->whereIn('id', [22, 44, 23, 55]);
+
+//        $query = DB::table('games')
+//            ->select('id', 'title', 'score', 'genre_id')
+//            ->whereBetween('id', [22, 25]);
+//
+//        dump($query->get());
+//        dump($query->toSql());
+
         $stats = [
             'count' => DB::table('games')->count(),
             'countScoreGtSeven' => DB::table('games')->where('score', '>', 7)->count(),
@@ -31,6 +66,7 @@ class GameController extends Controller
 
         return view('games.list', [
             'games' => $games,
+            'bestGames' => $bestGames,
             'stats' => $stats
         ]);
     }
