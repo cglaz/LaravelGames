@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3cead516-7304-4bc8-98d0-c316c27b2944" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_201940_create_games_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_203052_alter_games_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_203236_alter2_games_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_210023_add_publisher_id_games_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_210149_delete_created_at_updated_at_games_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_210417_delete_id_games_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_114506_create_geners_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_114846_create_publishers_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_115249_add_index_publishers_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_115355_create_movies_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seeds/GamesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/seeds/GamesSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seeds/GenersSeeder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/seeds/MoviesSeeder.php" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1tREFJT0CfMfBmVk1qlQzw0Jm5E" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3cead516-7304-4bc8-98d0-c316c27b2944" name="Default Changelist" comment="" />
+      <created>1622723409462</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622723409462</updated>
+      <workItem from="1622723413841" duration="12000" />
+    </task>
+    <servers />
+  </component>
+</project>

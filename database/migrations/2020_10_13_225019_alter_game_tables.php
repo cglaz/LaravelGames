@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePublishersTable extends Migration
+class AlterGameTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreatePublishersTable extends Migration
      */
     public function up()
     {
-        Schema::create('publishers', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('games', function (Blueprint $table) {
+            $table->integer('genre_id')->nullable();
         });
     }
 
@@ -27,6 +25,8 @@ class CreatePublishersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publishers');
+        Schema::table('games', function (Blueprint $table) {
+            $table->dropColumn('genre_id');
+        });
     }
 }

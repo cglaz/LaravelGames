@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterGamesTable extends Migration
+class AlterGameTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AlterGamesTable extends Migration
     public function up()
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->string('title', 150)->change();
-            $table->dropColumn(['score', 'publisher']);
+            $table->string('title', 50)->change();
+            $table->dropColumn(['score']);
             $table->index('title');
         });
     }
@@ -29,8 +29,7 @@ class AlterGamesTable extends Migration
     {
         Schema::table('games', function (Blueprint $table) {
             $table->string('title', 100)->change();
-            $table->float('score');
-            $table->string('publisher')->comment('game publisher');
+            $table->float('score')->nullable();
             $table->dropIndex('games_title_index');
         });
     }
