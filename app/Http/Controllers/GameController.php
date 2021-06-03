@@ -21,9 +21,17 @@ class GameController extends Controller
         $games = DB::table('games')
             ->select('id', 'title', 'score', 'genre_id')
             ->get();
+        $stats = [
+            'count' => DB::table('games')->count(),
+            'countScoreGtSeven' => DB::table('games')->where('score', '>', 7)->count(),
+            'max' => DB::table('games')->max('score'),
+            'min' => DB::table('games')->min('score'),
+            'avg' => DB::table('games')->avg('score')
+        ];
 
         return view('games.list', [
-            'games' => $games
+            'games' => $games,
+            'stats' => $stats
         ]);
     }
 
