@@ -13,7 +13,9 @@ class AlterGamesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('games', function (Blueprint $table) {
+            $table->integer('score')->nullable();
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class AlterGamesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('games', function (Blueprint $table) {
+            $table->dropColumn('score');
+        });
     }
 }

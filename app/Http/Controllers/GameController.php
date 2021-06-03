@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class GameController extends Controller
 {
@@ -13,76 +15,57 @@ class GameController extends Controller
     // U - update
     // D - delete
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
+
+    public function index(): View
     {
-        dump('index');
+        $games = DB::table('games')
+            ->select('id', 'title', 'score', 'genre_id')
+            ->get();
+
+        return view('games.list', [
+            'games' => $games
+        ]);
     }
 
-    /**
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create(): Response
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function show($game)
+
+    public function store(Request $request): Response
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function show(int $gameId): View
+    {
+        $gamesTable = DB::table('games');
+        //$games = $gamesTable->select('id','title', 'score', 'gnere_id')->where('id', $gameId)->get();
+        //$game = $gamesTable->where('id', $gameId)->first();
+        $game = $gamesTable->find($gameId);
+
+        return view('games.show', [
+            'game' => $game
+        ]);
+    }
+
+
+    public function edit(int $id): Response
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, int $id): Response
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(int $id): Response
     {
         //
     }
