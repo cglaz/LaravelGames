@@ -9,52 +9,29 @@ use Illuminate\View\View;
 
 class GameController extends Controller
 {
-    // CRUD
-    // C - create
-    // R - read
-    // U - update
-    // D - delete
-
-
     public function index(): View
     {
-//        $games = DB::table('games')
-//            ->select('id', 'title', 'score', 'genre_id')
-//            ->get();
-
         $games = DB::table('games')
             ->join('genres', 'games.genre_id', '=', 'genres.id')
             ->select('games.id', 'games.title', 'games.score', 'genres.name as genre_name')
-            ->get();
+            ->orderByDesc('score')
+//            ->limit(10)
+//            ->offset(2)
+              ->paginate(10);
+              //->simplePaginate();
 
+        return view('games.list', ['games' => $games]);
+    }
+
+    public function dashboard(): View
+    {
         $bestGames = DB::table('games')
             ->join('genres', 'games.genre_id', '=', 'genres.id')
             ->select('games.id', 'games.title', 'games.score', 'genres.name as genre_name')
-            ->where('score', '>', 9)
+            ->where('score', '>', 7)
+            ->orderBy('score', 'desc')
+            ->limit(10)
             ->get();
-
-//        $query = DB::table('games')
-//            ->select('id', 'title', 'score', 'genre_id')
-//            ->where([
-//                ['score', '>', 5],
-//                ['id', '>', 44]
-//            ]);
-
-//        $query = DB::table('games')
-//            ->select('id', 'title', 'score', 'genre_id')
-//            ->where('score', '>', '6')
-//            ->orWhere('id', 55);
-
-//        $query = DB::table('games')
-//            ->select('id', 'title', 'score', 'genre_id')
-//            ->whereIn('id', [22, 44, 23, 55]);
-
-//        $query = DB::table('games')
-//            ->select('id', 'title', 'score', 'genre_id')
-//            ->whereBetween('id', [22, 25]);
-//
-//        dump($query->get());
-//        dump($query->toSql());
 
         $stats = [
             'count' => DB::table('games')->count(),
@@ -64,10 +41,17 @@ class GameController extends Controller
             'avg' => DB::table('games')->avg('score')
         ];
 
-        return view('games.list', [
-            'games' => $games,
+        $scoreStats = DB::table('games')
+            ->select(DB::raw('count(*) as count'),'score')
+            ->having('count', '>', 8)
+            ->groupBy('score')
+            ->orderBy('count', 'desc')
+            ->get();
+
+        return view('games.dashboard', [
             'bestGames' => $bestGames,
-            'stats' => $stats
+            'stats' => $stats,
+            'scoreStats' => $scoreStats
         ]);
     }
 
