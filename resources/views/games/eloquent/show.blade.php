@@ -9,11 +9,11 @@
                 <li>Id: {{ $game->id }}</li>
                 <li>Nazwa: {{ $game->title }}</li>
                 <li>Wydawca: {{ $game->publisher }}</li>
-                <li>Kategoria: {{ $game->genre_id }}</li>
+                <li>Kategoria: {{ $game->genre->name }}</li>
                 <li>Opis: {{ $game->description }}</li>
             </ul>
 
-            <a href="{{ route('games.index') }}" class="btn btn-light">Lista gier</a>
+            <a href="{{ route('games.e.list') }}" class="btn btn-light">Lista gier</a>
         </div>
         @else
             <h5 class="card-header">Brak danych do wyświetlenia</h5>

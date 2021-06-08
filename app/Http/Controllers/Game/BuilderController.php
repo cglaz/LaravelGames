@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Game;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Http\Controllers\Controller;
 
-class GameController extends Controller
+class BuilderController extends Controller
 {
     public function index(): View
     {
@@ -20,7 +21,7 @@ class GameController extends Controller
               ->paginate(10);
               //->simplePaginate();
 
-        return view('games.list', ['games' => $games]);
+        return view('games.builder.list', ['games' => $games]);
     }
 
     public function dashboard(): View
@@ -48,25 +49,12 @@ class GameController extends Controller
             ->orderBy('count', 'desc')
             ->get();
 
-        return view('games.dashboard', [
+        return view('games.builder.dashboard', [
             'bestGames' => $bestGames,
             'stats' => $stats,
             'scoreStats' => $scoreStats
         ]);
     }
-
-
-    public function create(): Response
-    {
-        //
-    }
-
-
-    public function store(Request $request): Response
-    {
-        //
-    }
-
 
     public function show(int $gameId): View
     {
@@ -75,26 +63,9 @@ class GameController extends Controller
         //$game = $gamesTable->where('id', $gameId)->first();
         $game = $gamesTable->find($gameId);
 
-        return view('games.show', [
+        return view('games.builder.show', [
             'game' => $game
         ]);
     }
 
-
-    public function edit(int $id): Response
-    {
-        //
-    }
-
-
-    public function update(Request $request, int $id): Response
-    {
-        //
-    }
-
-
-    public function destroy(int $id): Response
-    {
-        //
-    }
 }

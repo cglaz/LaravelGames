@@ -2,9 +2,7 @@
     <nav aria-label="Page navigation example" class="text-dark">
         <ul class="pagination justify-content-center text-dark">
             {{-- Previous Page Link --}}
-            @if ($paginator->onFirstPage())
-
-            @else
+            @if (!$paginator->onFirstPage())
                 <li class="page-item text-dark">
                     <a class="page-link text-dark rounded-circle" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">Poprzednia</a>
                 </li>

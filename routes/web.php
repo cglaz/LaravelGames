@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//USERS
 Route::get('/', 'Home\MainPage')
     ->name('home.mainPage');
 
@@ -24,24 +25,40 @@ Route::get('users', 'UserController@list')
 Route::get('users/{userId}', 'UserController@show')
     ->name('get.user.show');
 
-//Route::get('users/{id}/profile', 'User\ProfilController@show')
-//    ->name('get.user.profile');
 
 Route::get('users/{id}/address', 'User\ShowAddress')
     ->where(['id' => '[0-9]+'])
     ->name('get.users.address');
 
+//GAMES
+Route::group([
+    'prefix' => 'b/games',
+    'namespace' => 'Game',
+    'as' => 'games.b.'
+], function() {
+    Route::get('dashboard','BuilderController@dashboard')
+        ->name('dashboard');
 
-Route::get('games/dashboard','GameController@dashboard')
-    ->name('games.dashboard');
+    Route::get('', 'BuilderController@index')
+        ->name('list');
+
+    Route::get('{game}', 'BuilderController@show')
+        ->name('show');
+});
+
+Route::group([
+    'prefix' => 'e/games',
+    'namespace' => 'Game',
+    'as' => 'games.e.'
+], function() {
+    Route::get('dashboard','EloquentController@dashboard')
+        ->name('dashboard');
+
+    Route::get('', 'EloquentController@index')
+        ->name('list');
+
+    Route::get('{game}', 'EloquentController@show')
+        ->name('show');
+});
 
 
-Route::resource('games', 'GameController')
-    ->only([
-        'index', 'show'
-    ]);
-
-Route::resource('admin/games', 'GameController')
-    ->only([
-        'store', 'create', 'destroy'
-    ]);
