@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Game;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 use Illuminate\View\View;
 use App\Model\Game;
 
@@ -11,16 +13,17 @@ class EloquentController extends Controller
 {
     public function index(): View
     {
-        $games = Game::orderByDesc('created_at')
-        ->paginate(10);
+        $games = Game::with('genre')
+            //->publisher('Edios')
+            ->orderByDesc('created_at')
+            ->paginate(10);
 
         return view('games.eloquent.list', ['games' => $games]);
     }
 
     public function dashboard(): View
     {
-        $bestGames = Game::where('score', '>', 7)
-            ->get();
+        $bestGames = Game::best()->get();
 
         $stats = [
             'count' => Game::count(),
@@ -45,15 +48,22 @@ class EloquentController extends Controller
         ]);
     }
 
-    public function show(int $gameId): View
+    public function show(int $gameId, Request $request): View
     {
-        $game = Game::find($gameId);
-        //$game = Game::where('id', $gameId)->first();
-        //$game = Game::firstWhere('id', $gameId);
-        //$game = Game::findOrFail($gameId);
+        $isAjax = false;
+        if($request->ajax()) {
+            $isAjax = true;
+        }
 
-        return view('games.eloquent.show', [
-            'game' => $game
-        ]);
+        $game = Game::find($gameId);
+
+        if($isAjax) {
+            return $game;
+        } else {
+            return view('games.eloquent.show', [
+                'game' => $game
+            ]);
+        }
+
     }
 }

@@ -40,7 +40,8 @@ Route::group([
         ->name('dashboard');
 
     Route::get('', 'BuilderController@index')
-        ->name('list');
+        ->name('list')
+        ->middleware(['paramCheck']);
 
     Route::get('{game}', 'BuilderController@show')
         ->name('show');
@@ -49,16 +50,23 @@ Route::group([
 Route::group([
     'prefix' => 'e/games',
     'namespace' => 'Game',
-    'as' => 'games.e.'
+    'as' => 'games.e.',
+    //'middleware' => ['profiling']
 ], function() {
     Route::get('dashboard','EloquentController@dashboard')
         ->name('dashboard');
 
     Route::get('', 'EloquentController@index')
-        ->name('list');
+        ->name('list')
+        ->middleware(['paramCheck']);
 
     Route::get('{game}', 'EloquentController@show')
-        ->name('show');
+        ->name('show')
+        ->middleware(['profiling']);
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

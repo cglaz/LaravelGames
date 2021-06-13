@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ParamCheck;
+use App\Http\Middleware\RequestLog;
+use http\Env\Request;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -43,6 +46,15 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'profiling' => [
+            RequestLog::class
+        ],
+
+        'paramCheck' => [
+            ParamCheck::class
+        ],
+
     ];
 
     /**
