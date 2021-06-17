@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,16 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Auth::routes();
+    Route::get('/auth/redirect', 'Auth\LoginController@redirectToGoogle')->name('login.google');
+
+    Route::get('/auth/callback', 'Auth\LoginController@handleGoogleCallback');
+
+    Route::get('/auth/login/facebook', 'Auth\LoginController@redirectToFacebook')->name('login.facebook');
+
+    Route::get('/auth/callback/facebook', 'Auth\LoginController@handleFacebookCallback');
+
+    Auth::routes();
+
+
 
 
