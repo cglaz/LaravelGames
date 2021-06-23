@@ -68,6 +68,24 @@ Route::group(['middleware' => ['auth']], function () {
             ->middleware(['profiling']);
     });
 
+    Route::group([
+        'prefix' => 'games',
+        'namespace' => 'Game',
+        'as' => 'games.',
+        //'middleware' => ['profiling']
+    ], function() {
+        Route::get('dashboard','GameController@dashboard')
+            ->name('dashboard');
+
+        Route::get('', 'GameController@index')
+            ->name('list')
+            ->middleware(['paramCheck']);
+
+        Route::get('{game}', 'GameController@show')
+            ->name('show')
+            ->middleware(['profiling']);
+    });
+
 });
 
     Route::get('/auth/redirect', 'Auth\LoginController@redirectToGoogle')->name('login.google');

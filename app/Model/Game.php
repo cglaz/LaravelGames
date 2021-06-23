@@ -31,7 +31,7 @@ class Game extends Model
     {
         return $query
             ->with('genre')
-            ->where('score', '>=', 9)
+            ->where('score', '>=', 5)
             ->orderBy('score', 'desc');
     }
 

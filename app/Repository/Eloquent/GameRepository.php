@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Repository\Eloquent;
 
 use App\Model\Game;
+use App\Repository\GameRepository as GameRepositoryInterface;
+use App\Service\FakeService;
 
-class EloquentGameRepository implements GameRepositoryInterface
+class GameRepository implements GameRepositoryInterface
 {
     private Game $gameModel;
 
