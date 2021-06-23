@@ -14,7 +14,6 @@ class FakeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
         $this->app->bind(
           FakeService::class,
           function($pp) {

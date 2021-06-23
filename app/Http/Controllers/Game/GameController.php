@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Game;
 
 
+use App\Facade\Game;
 use App\Http\Controllers\Controller;
 use App\Repository\GameRepository;
 use App\Service\FakeService;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
-use App\Model\Game;
+
 
 class GameController extends Controller
 {
@@ -26,7 +27,10 @@ class GameController extends Controller
     public function index(): View
     {
         Log::alert('to je fasada');
-        return view('games.list', ['games' => $this->gameRepository->allPaginated(12)]);
+        return view('games.list', [
+            //'games' => $this->gameRepository->allPaginated(12)
+            'games' => Game::allPaginated(10)
+        ]);
     }
 
     public function dashboard(): View

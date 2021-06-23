@@ -41,6 +41,9 @@ class GameServiceProvider extends ServiceProvider
         $this->app->when(BuilderController::class)
             ->needs(GameRepository::class)
             ->give(\App\Repository\Builder\GameRepository::class);
+
+
+        $this->app->singleton('game', GameRepository::class);
     }
 
     /**
