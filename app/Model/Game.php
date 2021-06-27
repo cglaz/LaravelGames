@@ -3,47 +3,68 @@
 namespace App\Model;
 
 use App\Model\Scope\LastWeekScope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    //protected $table = ''
-    //protected $primaryKey = '';
-    //protected $timestamps = false;
-
-    protected $fillable = [
-        'title', 'description', 'score', 'publisher', 'genre_id'
+    protected $attributes = [
+        'metacritic_score' => null
     ];
 
-    protected static function booted()
+    protected $casts = [
+        'metacritic_score' => 'integer',
+        'steam_appid' => 'integer',
+    ];
+
+    // tablica z atrybutami które możemy uzupełniać przez create lub konstruktor
+    //protected $fillable = ['name', 'description', 'metacritic_score', 'publisher', 'genre_id'];
+
+    // ====> ATTRIBUTES <====
+
+    public function getScoreAttribute(): ?int
     {
-       //static::addGlobalScope(new LastWeekScope());
+        return $this->metacritic_score;
     }
 
-
-    public function genre()
+    public function getSteamIdAttribute(): int
     {
-        return $this->belongsTo(Genre::class);
+        return $this->steam_appid;
     }
+
+    public function getShortDescriptionAttribute()
+    {
+        return $this->attributes['short_description'];
+    }
+
+    // ====> RELATIONS <====
+
+    public function genres()
+    {
+        return $this->belongsToMany('App\Model\Genre', 'gameGenres');
+    }
+
+    public function publishers()
+    {
+        return $this->belongsToMany('App\Model\Publisher', 'gamePublishers');
+    }
+
+    // ====> SCOPE <====
+
+    // using global scope
+    //protected static function booted()
+    //{
+    //    static::addGlobalScope(new LastWeekScope());
+    //}
 
     public function scopeBest(Builder $query): Builder
     {
-        return $query
-            ->with('genre')
-            ->where('score', '>=', 5)
-            ->orderBy('score', 'desc');
+        return $query->where('metacritic_score', '>' , 90)
+            ->orderBy('metacritic_score', 'desc');
     }
 
-    public function scopeGenre(Builder $query, int $genre_id): Builder
+    public function scopePublisher(Builder $query, string $publisher): Builder
     {
-        return $query
-            ->where('genre_id', $genre_id);
+        return $query->where('publisher', $publisher);
     }
-
-    public function scopePublisher(Builder $query, string $name): Builder
-    {
-        return $query->where('publisher', $name);
-    }
-
 }

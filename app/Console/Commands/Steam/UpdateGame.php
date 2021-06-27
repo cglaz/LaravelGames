@@ -3,6 +3,8 @@
 namespace App\Console\Commands\Steam;
 
 use Illuminate\Console\Command;
+use Illuminate\Http\Client\Factory;
+use Illuminate\Support\Facades\Http;
 
 class UpdateGame extends Command
 {
@@ -22,13 +24,15 @@ class UpdateGame extends Command
      */
     protected $description = 'Update list of games';
 
+    private Factory $httpClient;
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Factory $httpClient)
     {
+        $this->httpClient = $httpClient;
         parent::__construct();
     }
 
@@ -39,25 +43,66 @@ class UpdateGame extends Command
      */
     public function handle()
     {
-        $game = $this->argument('game');
-        $this->line($game);
+        $responsePost = $this->httpClient->post('https://postman-echo.com/postsss', [
+            'foo' => 'bar',
+            'alfa' => 'omega',
+            'elo' => 'ziom'
 
-//        $question = $this->ask("Czy to twoja ulubiona gra");
-//
-//        if($question) {
-//
-//        }
-//        dump($question);
-//        if ($this->confirm("Czy chcesz zaktualizować gre")) {
-//            dump("Zrobiles to");
-//        }
+        ]);
 
-        $this->error('Eroor');
-        $this->question('question /');
-        $this->comment('comment ...');
-        $this->info('info ...');
-        $this->line('line ...');
+        dump($responsePost->json());
+        dump($responsePost->status());
+
+        if ($responsePost->failed()) {
+            $this->error('blad aplikacji');
+        }
 
         return 0;
     }
+
+//    public function handle_one()
+//    {
+//        $game = $this->argument('game');
+//        $this->line($game);
+//
+////        $question = $this->ask("Czy to twoja ulubiona gra");
+////
+////        if($question) {
+////
+////        }
+////        dump($question);
+////        if ($this->confirm("Czy chcesz zaktualizować gre")) {
+////            dump("Zrobiles to");
+////        }
+//
+//        $this->error('Eroor');
+//        $this->question('question /');
+//        $this->comment('comment ...');
+//        $this->info('info ...');
+//        $this->line('line ...');
+//
+//        return 0;
+//    }
+
+
+    /**
+     * $response->body() : string;
+     * $response->json() : array|mixed;
+     * $response->status() : int;
+     * $response->ok() : bool;
+     * $response->successful() : bool;
+     * $response->serverError() : bool;
+     * $response->clientError() : bool;
+     * $response->header($header) : string;
+     * $response->headers() : array;
+     */
+
+    //dump($response->body());
+    //dump($response->json());
+
+    //        $response = $this->httpClient->get('https://postman-echo.com/get', [
+//            'foo' => 'bar',
+//            'alfa' => 'omega'
+//
+//        ]);
 }

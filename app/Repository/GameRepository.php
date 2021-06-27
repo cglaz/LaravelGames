@@ -7,7 +7,7 @@ namespace App\Repository;
 interface GameRepository
 {
     public function get(int $id);
-    public function  all();
+    public function all();
     public function allPaginated(int $limit);
     public function best();
     public function stats();

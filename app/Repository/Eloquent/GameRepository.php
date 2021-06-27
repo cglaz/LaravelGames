@@ -12,6 +12,7 @@ class GameRepository implements GameRepositoryInterface
 {
     private Game $gameModel;
 
+    //public function __construct(Game $gameModel, FakeService $config)
     public function __construct(Game $gameModel)
     {
         $this->gameModel = $gameModel;
@@ -19,26 +20,26 @@ class GameRepository implements GameRepositoryInterface
 
     public function get(int $id)
     {
-        return $this->gameModel
-            ->find($id);
+        return $this->gameModel->find($id);
     }
 
-    public function  all()
+    public function all()
     {
         return $this->gameModel
-            ->with('genre')
-            ->orderByDesc('created_at')
+            ->with('genres')
+            ->orderBy('crated_at')
             ->get();
     }
 
     public function allPaginated(int $limit)
     {
         return $this->gameModel
-            ->with('genre')
-            ->orderByDesc('created_at')
+            ->with('genres')
+            ->orderBy('crated_at')
             ->paginate($limit);
     }
 
+    //public function getBestGames()
     public function best()
     {
         return $this->gameModel
@@ -50,23 +51,21 @@ class GameRepository implements GameRepositoryInterface
     {
         return [
             'count' => $this->gameModel->count(),
-            'countScoreGtSeven' => $this->gameModel
-                ->where('score', '>', 7)
-                ->count(),
-            'max' => $this->gameModel->max('score'),
-            'min' => $this->gameModel->min('score'),
-            'avg' => $this->gameModel->avg('score')
+            'countScoreGtSeventy' => $this->gameModel->where('metacritic_score', '>=', 70)->count(),
+            'max' => $this->gameModel->max('metacritic_score'),
+            'min' => $this->gameModel->min('metacritic_score'),
+            'avg' => round((int)$this->gameModel->avg('metacritic_score'), 2),
         ];
     }
 
     public function scoreStats()
     {
         return $this->gameModel->select(
-            $this->gameModel->raw('count(*) as count'),'score'
+            $this->gameModel->raw('count(*) as count'), 'metacritic_score'
         )
-            ->having('count', '>', 4)
-            ->groupBy('score')
-            ->orderBy('count', 'desc')
+            ->having('metacritic_score', '>=', 70)
+            ->groupBy('metacritic_score')
+            ->orderBy('metacritic_score', 'desc')
             ->get();
     }
 }
