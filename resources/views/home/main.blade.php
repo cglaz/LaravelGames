@@ -4,6 +4,6 @@
     <h2 class="mt-4">Dashboard</h2>
 
     <div>
-        <p>Witaj </p>
+        Witaj: {{ $user->name }}
     </div>
 @endsection

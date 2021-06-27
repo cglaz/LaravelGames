@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'myTestEnv' => env('MY_TEST_ENV')
+    'myTest' => env('MY_TEST_ENV', true),
 ];

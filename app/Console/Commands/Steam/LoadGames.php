@@ -75,7 +75,6 @@ class LoadGames extends Command
         $gameList = file_get_contents($this->temporaryGamesList);
         $gameList = json_decode($gameList, true);
 
-
         $savedGames = DB::table('games')
             ->select('steam_appid')
             ->pluck('steam_appid')
@@ -102,7 +101,7 @@ class LoadGames extends Command
                 continue;
             }
 
-            //sleep(1);
+            sleep(1);
 
             $steamGameDetailsUrl = config('steam.api.games.details');
             $response = $this->httpClient->get(

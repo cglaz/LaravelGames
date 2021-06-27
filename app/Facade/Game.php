@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
 
 class Game extends Facade
 {
-    protected static function getFacadeAccessor(): string
+    protected static function getFacadeAccessor ()
     {
         //return GameRepository::class;
         return 'game';

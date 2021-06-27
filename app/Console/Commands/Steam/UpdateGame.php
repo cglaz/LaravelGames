@@ -14,17 +14,18 @@ class UpdateGame extends Command
      * @var string
      */
     //protected $signature = 'steam:update-game {game?}';
-    //protected $signature = 'steam:update-game {game=Forza}';
-      protected $signature = 'steam:update-game {game}';
+    //protected $signature = 'steam:update-game {game=FIFA}';
+    protected $signature = 'steam:update-game {game}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update list of games';
+    protected $description = 'Command description';
 
     private Factory $httpClient;
+
     /**
      * Create a new command instance.
      *
@@ -32,8 +33,8 @@ class UpdateGame extends Command
      */
     public function __construct(Factory $httpClient)
     {
-        $this->httpClient = $httpClient;
         parent::__construct();
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -43,66 +44,65 @@ class UpdateGame extends Command
      */
     public function handle()
     {
-        $responsePost = $this->httpClient->post('https://postman-echo.com/postsss', [
+        /*$response = Http::get('https://postman-echo.com/get', [
             'foo' => 'bar',
-            'alfa' => 'omega',
-            'elo' => 'ziom'
+            'alpha' => 'omega'
+        ]);*/
 
+        $response = $this->httpClient->get('https://postman-echo.com/get', [
+            'foo' => 'bar',
+            'alpha' => 'omega'
         ]);
 
-        dump($responsePost->json());
-        dump($responsePost->status());
+        $response = $this->httpClient->post('https://postman-echo.com/postsss', [
+            'foo' => 'bar',
+            'alpha' => 'omega',
+            'post' => true
+        ]);
 
-        if ($responsePost->failed()) {
-            $this->error('blad aplikacji');
+        /**
+            $response->body() : string;
+            $response->json() : array|mixed;
+            $response->status() : int;
+            $response->ok() : bool;
+            $response->successful() : bool;
+            $response->failed() : bool;
+            $response->serverError() : bool;
+            $response->clientError() : bool;
+            $response->header($header) : string;
+            $response->headers() : array;
+        */
+
+        //dump($response->body());
+        dump($response->status());
+        dump($response->json());
+
+        if ($response->failed()) {
+            $this->error('Error ...');
         }
 
         return 0;
     }
 
-//    public function handle_one()
-//    {
-//        $game = $this->argument('game');
-//        $this->line($game);
-//
-////        $question = $this->ask("Czy to twoja ulubiona gra");
-////
-////        if($question) {
-////
-////        }
-////        dump($question);
-////        if ($this->confirm("Czy chcesz zaktualizować gre")) {
-////            dump("Zrobiles to");
-////        }
-//
-//        $this->error('Eroor');
-//        $this->question('question /');
-//        $this->comment('comment ...');
-//        $this->info('info ...');
-//        $this->line('line ...');
-//
-//        return 0;
-//    }
+    public function handle_one(Factory $httpClient)
+    {
+        $game = $this->argument('game');
+        $this->line($game);
 
+        //$answer = $this->ask("Czy to Twoja ulubiona gra?");
+        //if ($answer) {}
+        //dump($answer);
 
-    /**
-     * $response->body() : string;
-     * $response->json() : array|mixed;
-     * $response->status() : int;
-     * $response->ok() : bool;
-     * $response->successful() : bool;
-     * $response->serverError() : bool;
-     * $response->clientError() : bool;
-     * $response->header($header) : string;
-     * $response->headers() : array;
-     */
+        //if($this->confirm("Czy chcesz zaktualizować grę?")) {
+        //    dump('Zrobiles to');
+        //}
 
-    //dump($response->body());
-    //dump($response->json());
+        $this->error('Error ...');
+        $this->question('Question ...');
+        $this->comment('Comment ...');
+        $this->info('Info ...');
+        $this->line('Line ...');
 
-    //        $response = $this->httpClient->get('https://postman-echo.com/get', [
-//            'foo' => 'bar',
-//            'alfa' => 'omega'
-//
-//        ]);
+        return 0;
+    }
 }

@@ -14,12 +14,13 @@ class FakeServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //dump('Fake - register');
         $this->app->bind(
-          FakeService::class,
-          function($pp) {
-
-              return new FakeService('parametr');
-          }
+            FakeService::class,
+            function($pp) {
+                dump('Fake - register - bind');
+                return new FakeService('parametr');
+            }
         );
     }
 
@@ -30,6 +31,6 @@ class FakeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        //dump('Fake - boot');
     }
 }

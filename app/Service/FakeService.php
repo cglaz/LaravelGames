@@ -7,6 +7,7 @@ namespace App\Service;
 class FakeService
 {
     private string $config;
+
     public function __construct(string $configParam)
     {
         $this->config = $configParam;
@@ -16,5 +17,4 @@ class FakeService
     {
         return $this->config;
     }
-
 }

@@ -1,22 +1,19 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace App\Repository\Builder;
 
 use App\Model\Game;
-use App\Repository\GameRepository as GameRepositoryInterface;
-use Illuminate\Pagination\LengthAwarePaginator;
-
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use App\Repository\GameRepository as GameRepositoryInterface;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use stdClass;
 
 class GameRepository implements GameRepositoryInterface
 {
-
-
     public function __construct()
     {
 
@@ -26,22 +23,26 @@ class GameRepository implements GameRepositoryInterface
     {
         $data = DB::table('games')
             ->join('genres', 'games.genre_id', '=', 'genres.id')
-            ->select('games.id', 'games.title', 'games.score', 'games.publisher', 'games.description', 'genres.name as genre_name', 'genres.id as genre_id')
+            ->select(
+                'games.id', 'games.title', 'games.score', 'games.publisher', 'games.description',
+                'genres.id as genre_id', 'genres.name as genre_name'
+            )
             ->where('games.id', $id)
             ->limit(1)
-            ->first();
-
-
+            ->first()
+            ;
 
         return $this->createGame($data);
-
     }
 
     public function all()
     {
         return DB::table('games')
             ->join('genres', 'games.genre_id', '=', 'genres.id')
-            ->select('games.id', 'games.title', 'games.score', 'genres.name as genre_name', 'genres.id as genre_id')
+            ->select(
+                'games.id', 'games.title', 'games.score',
+                'genres.id as genre_id', 'genres.name as genre_name'
+            )
             ->latest('games.created_at')
             ->get()
             ->map(fn($row) => $this->createGame($row));
@@ -52,24 +53,21 @@ class GameRepository implements GameRepositoryInterface
         $pageName = 'page';
         $currentPage = Paginator::resolveCurrentPage($pageName);
 
-
-
         $baseQuery = DB::table('games')
             ->join('genres', 'games.genre_id', '=', 'genres.id');
-
         $total = $baseQuery->count();
-        $data = collect();
 
+        $data = collect();
         if ($total) {
             $data = $baseQuery
-                ->select(
-                    'games.id', 'games.title', 'games.score',
-                    'genres.name as genre_name', 'genres.id as genre_id'
-                )
-                ->latest('games.created_at')
-                ->forPage($currentPage, $limit)
-                ->get()
-                ->map(fn($row) => $this->createGame($row));
+            ->select(
+                'games.id', 'games.title', 'games.score',
+                'genres.id as genre_id', 'genres.name as genre_name'
+            )
+            ->latest('games.created_at')
+            ->forPage($currentPage, $limit)
+            ->get()
+            ->map(fn($row) => $this->createGame($row));
         }
 
         return new LengthAwarePaginator(
@@ -84,14 +82,16 @@ class GameRepository implements GameRepositoryInterface
         );
     }
 
+    //public function getBestGames()
     public function best()
     {
         $data = DB::table('games')
             ->join('genres', 'games.genre_id', '=', 'genres.id')
-            ->select('games.id', 'games.title', 'games.score', 'genres.name as genre_name', 'genres.id as genre_id')
-            ->where('score', '>', 7)
-            ->orderBy('score', 'desc')
-            ->limit(10)
+            ->select(
+                'games.id', 'games.title', 'games.score',
+                'genres.id as genre_id', 'genres.name as genre_name'
+            )
+            ->where('score', '>', 9)
             ->get()
             ->map(fn($row) => $this->createGame($row));
 
@@ -104,16 +104,16 @@ class GameRepository implements GameRepositoryInterface
             'count' => DB::table('games')->count(),
             'countScoreGtSeven' => DB::table('games')->where('score', '>', 7)->count(),
             'max' => DB::table('games')->max('score'),
-            'min' => DB::table('games')->min('score'),
-            'avg' => DB::table('games')->avg('score')
+            'min'=> DB::table('games')->min('score'),
+            'avg'=> DB::table('games')->avg('score'),
         ];
     }
 
     public function scoreStats()
     {
         return DB::table('games')
-            ->select(DB::raw('count(*) as count'),'score')
-            ->having('count', '>', 8)
+            ->select(DB::raw('count(*) as count'), 'score')
+            ->having('count', '>', 10)
             ->groupBy('score')
             ->orderBy('count', 'desc')
             ->get();

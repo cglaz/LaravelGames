@@ -63,9 +63,9 @@ class GameRepository implements GameRepositoryInterface
         return $this->gameModel->select(
             $this->gameModel->raw('count(*) as count'), 'metacritic_score'
         )
-            ->having('metacritic_score', '>=', 70)
-            ->groupBy('metacritic_score')
-            ->orderBy('metacritic_score', 'desc')
-            ->get();
+        ->having('metacritic_score', '>=', 70)
+        ->groupBy('metacritic_score')
+        ->orderBy('metacritic_score', 'desc')
+        ->get();
     }
 }

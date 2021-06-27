@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-        <title>App Name - @yield('title', $applicationName)</title>
+        <title>@yield('title', $applicationName)</title>
         <meta name="description" content=""/>
 
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
@@ -13,12 +13,11 @@
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="{{ route('home.mainPage') }}">{{ $applicationName }}</a>
-            @auth
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
             </button>
-            @endauth
 
+            <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
@@ -39,7 +38,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -51,7 +50,9 @@
                 @endguest
             </ul>
         </nav>
-            @auth
+
+
+        @auth
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
                     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -70,6 +71,7 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid">
+                            @include('shared.messages')
                             @yield('content')
                         </div>
                     </main>
@@ -83,18 +85,19 @@
                         </div>
                     </footer>
                 </div>
-                @else
-                    <div id="layoutAuthentication">
-                        <div id="layoutAuthentication_content">
-                            <main>
-                                <div class="container-fluid">
-
-                                    @yield('content')
-                                </div>
-                            </main>
+            </div>
+        @else
+            <div id="layoutAuthentication">
+                <div id="layoutAuthentication_content">
+                    <main>
+                        <div class="container-fluid">
+                            @include('shared.messages')
+                            @yield('content')
                         </div>
-                    </div>
-                @endauth
+                    </main>
+                </div>
+            </div>
+        @endauth
         <script src="{{ mix('/js/app.js') }}"></script>
     </body>
 </html>

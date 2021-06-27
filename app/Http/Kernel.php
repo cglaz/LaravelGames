@@ -2,9 +2,8 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\ParamCheck;
+use GuzzleHttp\Middleware;
 use App\Http\Middleware\RequestLog;
-use http\Env\Request;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -49,12 +48,7 @@ class Kernel extends HttpKernel
 
         'profiling' => [
             RequestLog::class
-        ],
-
-        'paramCheck' => [
-            ParamCheck::class
-        ],
-
+        ]
     ];
 
     /**
@@ -75,5 +69,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'requestLog' => RequestLog::class,
+        RequestLog::class => RequestLog::class
     ];
 }

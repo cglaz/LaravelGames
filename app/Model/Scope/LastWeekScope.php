@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model\Scope;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Support\Carbon;
 
 class LastWeekScope implements Scope
 {
@@ -17,6 +17,7 @@ class LastWeekScope implements Scope
         $pastDate = $currentDate
             ->subDays($currentDate->dayOfWeek)
             ->subWeek();
+
         $builder->where('created_at', '>', $pastDate);
     }
 }
