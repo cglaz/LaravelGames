@@ -4,24 +4,39 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\Game\GameController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MainPage extends Controller
 {
-    //public function __invoke()
     public function __invoke(Request $request)
     {
-        if (Auth::check()) {
-            //dd('jestem zalogowany');
-        }
+
+        $gameId = 44;
+        //$url = url("games/$gameId");
+        //$url = url()->current();
+        //$url = url()->full();
+        //$url = url()->previous();
+
+        //$routeUrl = route('games.show', ['game' => $gameId]);
+        //$routeUrl = route(
+        //    'games.show',
+        //    ['game' => $gameId, 'foo' => 'bar', 'test' => 1]
+        //);
+
+        $actionUrl = action([GameController::class, 'dashboard']);
+//        $actionUrl = action(
+//            [GameController::class, 'show'],
+//            ['game' => $gameId, 'foo' => 'bar']
+//        );
+//
+//        dump($actionUrl);
+//
+//        dd('end');
 
         $user = Auth::user();
-        //$user = $request->user();
-        $id = Auth::id();
-
-        //Auth::logout();
 
         return view('home.main', ['user' => $user]);
     }
