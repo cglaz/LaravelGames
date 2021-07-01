@@ -59,7 +59,7 @@ class Game extends Model
 
     public function scopeBest(Builder $query): Builder
     {
-        return $query->where('metacritic_score', '>' , 90)
+        return $query->where('metacritic_score', '>' , 70)
             ->orderBy('metacritic_score', 'desc');
     }
 

@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cead516-7304-4bc8-98d0-c316c27b2944" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_201940_create_games_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_203052_alter_games_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_203236_alter2_games_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_210023_add_publisher_id_games_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_210149_delete_created_at_updated_at_games_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_02_210417_delete_id_games_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_114506_create_geners_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_114846_create_publishers_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_115249_add_index_publishers_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_115355_create_movies_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seeds/GamesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/seeds/GamesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seeds/GenersSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/seeds/MoviesSeeder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Game/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/Game/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Home/MainPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/Home/MainPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Repository/Eloquent/GameRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Repository/Eloquent/GameRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2021_06_03_123636_alter_games_table.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +31,7 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3cead516-7304-4bc8-98d0-c316c27b2944" name="Default Changelist" comment="" />
@@ -51,7 +40,11 @@
       <option name="presentableId" value="Default" />
       <updated>1622723409462</updated>
       <workItem from="1622723413841" duration="12000" />
+      <workItem from="1625164721813" duration="14000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

@@ -26,7 +26,7 @@
                 <div class="mx-2">{!! $game->about !!}</div>
             </div>
 
-            <a href="{{ route('games.list') }}" class="btn btn-light">Lista gier</a>
+            <a href="{{ url()->previous() }}" class="btn btn-light">Powrót</a>
         </div>
     @else
         <h5 class="card-header">Brak danych do wyświetlenia</h5>

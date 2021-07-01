@@ -27,9 +27,7 @@ class GameController extends Controller
 
     public function dashboard(): View
     {
-
-
-        return view('games.dashboard', [
+        return view('game.dashboard', [
             'bestGames' => $this->gameRepository->best(),
             'stats' => $this->gameRepository->stats(),
             'scoreStats' => $this->gameRepository->scoreStats()

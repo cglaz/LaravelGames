@@ -43,6 +43,7 @@ class GameRepository implements GameRepositoryInterface
     public function best()
     {
         return $this->gameModel
+            ->with('genres')
             ->best()
             ->get();
     }
