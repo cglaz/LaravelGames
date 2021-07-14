@@ -36,30 +36,20 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>Lp</th>
                             <th>Id</th>
                             <th>Tytuł</th>
+                            <th>Typ</th>
                             <th>Ocena</th>
                             <th>Gatunek</th>
                             <th>Opcje</th>
                         </tr>
                         </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Lp</th>
-                            <th>Id</th>
-                            <th>Tytuł</th>
-                            <th>Ocena</th>
-                            <th>Gatunek</th>
-                            <th>Opcje</th>
-                        </tr>
-                        </tfoot>
                         <tbody>
                             @foreach($games ?? [] as $game)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $game->id }}</td>
                                     <td>{{ $game->name }}</td>
+                                    <td>{{ $game->type }}</td>
                                     <td>{{ $game->score ?? 'brak' }}</td>
                                     <td>{{ $game->genres->implode('name', ', ') }}</td>
                                     <td>

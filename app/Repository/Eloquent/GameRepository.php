@@ -39,7 +39,34 @@ class GameRepository implements GameRepositoryInterface
             ->paginate($limit);
     }
 
-    //public function getBestGames()
+    public function filterBy(?string $phrase, string $type = self::TYPE_DEFAULT, int $limit=15)
+    {
+        $query = $this->gameModel
+            ->with('genres')
+            ->orderBy('created_at');
+
+        $types = ['all','game', 'dlc', 'demo', 'episode', 'mod', 'movie', 'music', 'series', 'video'];
+        $typesFlip = array_flip($types);
+
+        if(!array_key_exists($type, $typesFlip)) {
+            $query = $this->gameModel
+                ->with('genres')
+                ->orderBy('created_at');
+
+            $type = self::TYPE_ALL;
+        }
+
+        if ($type !== self::TYPE_ALL) {
+            $query->where('type', $type);
+        }
+
+        if ($phrase) {
+            $query->whereRaw('name like ?', ["$phrase%"]);
+        }
+
+        return $query->paginate($limit);
+    }
+
     public function best()
     {
         return $this->gameModel
@@ -69,4 +96,6 @@ class GameRepository implements GameRepositoryInterface
         ->orderBy('metacritic_score', 'desc')
         ->get();
     }
+
+
 }

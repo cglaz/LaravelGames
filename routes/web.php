@@ -19,15 +19,25 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/', 'Home\MainPage')
     ->name('home.mainPage');
 
+    //USER - ME
+
+    Route::group(['prefix' => 'me', 'as' => 'me.'], function() {
+        Route::get('profile', 'User\UserController@profile')
+            ->name('profile');
+
+        Route::get('edit', 'User\UserController@edit')
+            ->name('edit');
+
+        Route::post('update', 'User\UserController@update')
+            ->name('update');
+    });
+
     // USERS
     Route::get('users', 'UserController@list')
         ->name('get.users');
 
     Route::get('users/{userId}', 'UserController@show')
         ->name('get.user.show');
-
-    //Route::get('users/{id}/profile', 'User\ProfilController@show')
-    //    ->name('get.user.profile');
 
     Route::get('users/{id}/address', 'User\ShowAddress')
         ->where(['id' => '[0-9]+'])

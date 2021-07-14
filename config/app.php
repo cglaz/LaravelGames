@@ -2,6 +2,7 @@
 
 use App\Providers\FakeServiceProvider;
 use App\Providers\GameServiceProvider;
+use App\Providers\UserServiceProvider;
 
 return [
 
@@ -180,6 +181,7 @@ return [
 
         GameServiceProvider::class,
         FakeServiceProvider::class,
+        UserServiceProvider::class,
     ],
 
     /*
