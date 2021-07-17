@@ -4,7 +4,11 @@
     <div class="card mt-3">
         <h5 class="card-header">{{ $user->name }}</h5>
         <div class="card-body">
-            <img src="/images/avatar.png" class="rounded mx-auto d-block">
+            @if($user->avatar)
+                <img src="{{ asset('storage/'.$user->avatar) }}" class="rounded mx-auto d-block user-avatar" alt="">
+            @else
+                <img src="/images/avatar.png" class="rounded mx-auto d-block">
+            @endif
             <ul>
                 <li>Nazwa: {{ $user->name }}</li>
                 <li>Email: {{ $user->email }}</li>

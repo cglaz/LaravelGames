@@ -15,16 +15,36 @@
                 </div>
             @endif
 
+
+
+
+
             <form action="{{ route('me.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <!-- X-XSRF-TOKEN -->
-                @if( $user-> avatar )
-                    <div>Jest avatar</div>
-                @else
-                    <img src="/images/avatar.png" class="rounded mx-auto d-block">
-                @endif
+                <div class="mb-3">
+                    @if($user->avatar)
+                        <img src="{{ asset('storage/'.$user->avatar) }}" class="rounded mx-auto d-block user-avatar" alt="">
+                        <button type="submit" name="deletephoto" class="btn btn-warning">Usuń zdjęcie</button>
+                    @else
+                        <img src="/images/avatar.png" class="rounded mx-auto d-block">
+                    @endif
+                </div>
 
                 <div class="form-group">
+                    <div class="form-group">
+                        <label for="avatar">Wybierz avatar</label>
+                        <input
+                            type="file"
+                            class="form-control-file"
+                            id="avatar"
+                            name="avatar"
+                        >
+                        @error('avatar')
+                            <div class="invalid-feedback d-block">{{$message}}</div>
+                        @enderror
+                    </div>
+
                     <label for="name">Nazwa</label>
                     <input
                         type="text"

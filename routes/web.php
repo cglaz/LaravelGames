@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function() {
 
         Route::post('update', 'User\UserController@update')
             ->name('update');
+
+        Route::delete('deletephoto', 'User\UserController@deletePhoto')
+            ->name('delete.photo');
     });
 
     // USERS
