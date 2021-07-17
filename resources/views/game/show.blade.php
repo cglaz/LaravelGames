@@ -1,10 +1,31 @@
 @extends('layout.main')
 
 @section('content')
-<div class="card">
+<div class="card mt-3">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     @if(!empty($game))
-        <h5 class="card-header">{{ $game->title }}</h5>
+        <h5 class="card-header">
+            {{ $game->name }}
+            <form class="float-right m-0" method="post" action="{{ route('me.games.add') }}">
+                @csrf
+                <div class="form-row">
+                    <input type="hidden" name="gameId" value="{{ $game->id }}">
+                    <button type="submit" class="btn btn-primary mb-2">Dodaj do mojej listy</button>
+                </div>
+            </form>
+
+        </h5>
         <div class="card-body">
+
             <ul>
                 <li>Id: {{ $game->id }}</li>
                 <li>Nazwa: {{ $game->name }}</li>

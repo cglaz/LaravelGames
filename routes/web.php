@@ -21,18 +21,36 @@ Route::middleware(['auth'])->group(function() {
 
     //USER - ME
 
-    Route::group(['prefix' => 'me', 'as' => 'me.'], function() {
-        Route::get('profile', 'User\UserController@profile')
+    Route::group([
+        'prefix' => 'me',
+        'namespace' => 'User',
+        'as' => 'me.'
+    ], function() {
+        Route::get('profile', 'UserController@profile')
             ->name('profile');
 
-        Route::get('edit', 'User\UserController@edit')
+        Route::get('edit', 'UserController@edit')
             ->name('edit');
 
-        Route::post('update', 'User\UserController@update')
+        Route::post('update', 'UserController@update')
             ->name('update');
 
-        Route::delete('deletephoto', 'User\UserController@deletePhoto')
+        Route::delete('deletephoto', 'UserController@deletePhoto')
             ->name('delete.photo');
+
+        //GAMES ME
+        Route::get('games', 'GameController@list')
+            ->name('games.list');
+
+        Route::post('games', 'GameController@add')
+            ->name('games.add');
+
+        Route::delete('games', 'GameController@remove')
+            ->name('game.delete');
+
+        Route::post('games/rate', 'GameController@rate')
+            ->name('games.rate');
+
     });
 
     // USERS

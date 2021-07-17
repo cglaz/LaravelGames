@@ -3,10 +3,20 @@
     Panel
 </a>
 
-<a class="nav-link" href="{{ route('me.profile') }}">
-    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-    Mój profil
-</a>
+<div class="sb-sidenav-menu-heading">Konto</div>
+
+<nav ckass="sb-sidenav-menu-nested">
+    <a class="nav-link" href="{{ route('me.profile') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+        Profil
+    </a>
+
+    <a class="nav-link" href="{{ route('me.games.list') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-gamepad"></i></div>
+        Moje Gry
+    </a>
+</nav>
+
 <div class="sb-sidenav-menu-heading">Użytkownicy</div>
 <a class="nav-link" href="{{ route('get.users') }}">
     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
