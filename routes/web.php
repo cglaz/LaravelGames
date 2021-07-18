@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function() {
             ->name('games.add');
 
         Route::delete('games', 'GameController@remove')
-            ->name('game.delete');
+            ->name('games.delete');
 
         Route::post('games/rate', 'GameController@rate')
             ->name('games.rate');
