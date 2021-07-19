@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddGameToUserList;
+use App\Http\Requests\RateGame;
 use App\Http\Requests\RemoveGameFromUserList;
 use App\Repository\GameRepository;
 use Illuminate\Http\Request;
@@ -58,9 +59,20 @@ class GameController extends Controller
             ->with('success', 'Gra została usnięta z Twojej listy');
     }
 
-    public function rate()
+    public function rate(RateGame $request)
     {
+        $data = $request->validated();
+        $gameId = (int) $data['gameId'];
+        $rate = $data['rate'] ? (int) $data['rate'] : null;
 
+        $game = $this->gameRepository->get($gameId);
+
+        $user = Auth::user();
+        $user->rateGame($game, $rate);
+
+        return redirect()
+            ->route('me.games.list')
+            ->with('success', 'Ocena została zapisana');
     }
 
 }
