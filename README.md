@@ -1,60 +1,62 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## About LaravelGames
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+LaravelGames is a web application where you can find your favourites STEAM apps and games. You can make your own games list, check statistics in a dashboard for example top 10 games, games with the highest rates etc.
 
-## About Laravel
+## Functionality
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1.User and registry<br>
+-Auth system<br>
+-Creating User<br>
+-Editing and updating your own user profile<br>
+-Login or register with social media, like Facebook, Google, GitHub<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2.User ones game list<br>
+-Add game from STEAM api<br>
+-Rate added game in user game list<br>
+-Delete game from list<br>
+-Show full details of game<br>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3.User managment(If user is admin)<br>
+-Can see list of users<br>
+-Can see details of other user<br>
 
-## Learning Laravel
+4.Dashboard - in this section of application you can see statistic of games from STEAM like:<br>
+-Total number of games<br>
+-Number of games with rate 70+<br>
+-The avarege rate of game<br>
+-The highest rate of games<br>
+-The lowest rate of game<br>
+-The games list with rate over 80+<br>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5.Global list of games from STEAM API:<br>
+-In this section you can find games explorer, where you can find game, dlc or whatever you want by typing letters and numbers or if you want to be more specific, the explorer allows you to specify result by choosing which type of result do you want: Games, Dlc, Demo, Episodes, Video, Music, Movie, Mods
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Setup and instalation
+1. composer install<br>
+2. npm install<br>
+3. php artisan serve<br>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+STEAM API COMMANDS:
+1. php artisan steam:load-games 1 -> Fetch games list from STEAM API to file<br>
+2. php artisan steam:load-games 2 -> Download games from STEAM and put them in app<br>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+## Specification
 
-## Contributing
+1.Front-End<br>
+-Bootstrap<br>
+-Saas<br>
+-HTML5<br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2.Back-end<br>
+-Laravel 7.24<br>
+-PHP 7.3<br>
+-MySQL<br>
 
-## Code of Conduct
+3.Database<br>
+-SQlite<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
