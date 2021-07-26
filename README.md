@@ -4,23 +4,23 @@ LaravelGames is a web application where you can find your favourites STEAM apps 
 
 ## Functionality
 
-1.User and registry
+1.User and registry<br>
 -Auth system<br>
 -Creating User<br>
 -Editing and updating your own user profile<br>
 -Login or register with social media, like Facebook, Google, GitHub<br>
 
-2.User ones game list
+2.User ones game list<br>
 -Add game from STEAM api<br>
 -Rate added game in user game list<br>
 -Delete game from list<br>
 -Show full details of game<br>
 
-3.User managment(If user is admin)
+3.User managment(If user is admin)<br>
 -Can see list of users<br>
 -Can see details of ones user<br>
 
-4.Dashboard - in this section of application you can see statistic of games from STEAM like:
+4.Dashboard - in this section of application you can see statistic of games from STEAM like:<br>
 -Total number of games<br>
 -Number of games with rate 70+<br>
 -The avarege rate of game<br>
@@ -28,7 +28,7 @@ LaravelGames is a web application where you can find your favourites STEAM apps 
 -The lowest rate of game<br>
 -The games list with rate over 80+<br>
 
-5.Global list of games from STEAM API:
+5.Global list of games from STEAM API:<br>
 -In this section you can find games explorer, where you can find game, dlc or whatever you want by typing letters and numbers or if you want to be more specific, the explorer allows you to specify result by choosing which type of result do you want: Games, Dlc, Demo, Episodes, Video, Music, Movie, Mods
 
 
