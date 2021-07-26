@@ -18,7 +18,7 @@ LaravelGames is a web application where you can find your favourites STEAM apps 
 
 3.User managment(If user is admin)<br>
 -Can see list of users<br>
--Can see details of ones user<br>
+-Can see details of other user<br>
 
 4.Dashboard - in this section of application you can see statistic of games from STEAM like:<br>
 -Total number of games<br>
