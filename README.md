@@ -44,17 +44,17 @@ STEAM API COMMANDS:
 
 ## Specification
 
-1.Front-End
+1.Front-End<br>
 -Bootstrap<br>
 -Saas<br>
 -HTML5<br>
 
-2.Back-end
+2.Back-end<br>
 -Laravel 7.24<br>
 -PHP 7.3<br>
 -MySQL<br>
 
-3.Database
+3.Database<br>
 -SQlite<br>
 
 
