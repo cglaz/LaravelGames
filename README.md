@@ -33,9 +33,9 @@ LaravelGames is a web application where you can find your favourites STEAM apps 
 
 
 ## Setup and instalation
-1. composer install
-2. npm install
-3. php artisan serve
+1. composer install<br>
+2. npm install<br>
+3. php artisan serve<br>
 
 
 STEAM API COMMANDS:
