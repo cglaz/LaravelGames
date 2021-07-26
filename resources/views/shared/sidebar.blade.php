@@ -16,12 +16,13 @@
         Moje Gry
     </a>
 </nav>
-
+@can('admin-level')
 <div class="sb-sidenav-menu-heading">Użytkownicy</div>
 <a class="nav-link" href="{{ route('get.users') }}">
     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
     Użytkownicy
 </a>
+@endcan
 
 <div class="sb-sidenav-menu-heading">Gry</div>
 <a class="nav-link" href="{{ route('games.dashboard') }}">

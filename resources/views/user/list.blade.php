@@ -28,7 +28,9 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user['id'] }}</td>
                                 <td>{{ $user['name'] }}</td>
-                                <td><a href="{{ route('get.user.show', ['userId' => $user['id']]) }}">Szczegóły</a></td>
+                                <td>@can('view', $user)
+                                        <a href="{{ route('get.user.show', ['userId' => $user['id']]) }}">Szczegóły</a>
+                                    @endcan</td>
                             </tr>
                         @endforeach
                     </tbody>

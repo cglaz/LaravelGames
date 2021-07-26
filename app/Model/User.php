@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone','avatar'
+        'name', 'email', 'password', 'phone','avatar', 'admin'
     ];
 
     /**
@@ -64,5 +64,10 @@ class User extends Authenticatable
     public function rateGame(Game $game, ?int $rate): void
     {
         $this->games()->updateExistingPivot($game, ['rate' => $rate]);
+    }
+
+    public function isAdmin(): bool
+    {
+        return (bool) $this->admin;
     }
 }
