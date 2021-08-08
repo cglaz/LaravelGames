@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/games', function (Request $request) {
+    $size = $request->get('size', 5);
+    return Game::paginate($size);
 });
-
-
-Route::apiResource('games', 'Api\GameController')
-    ->only([
-        'index', 'show'
-    ]);

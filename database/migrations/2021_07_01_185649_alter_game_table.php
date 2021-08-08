@@ -28,9 +28,13 @@ class AlterGameTable extends Migration
     public function down()
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->string('title', 100)->change();
-            $table->float('score')->nullable();
-            $table->dropIndex('games_title_index');
+            if (Schema::hasColumn('games', 'title')) {
+                $table->string('title', 100)->change();
+                $table->dropIndex('games_title_index');
+            }
+            if (Schema::hasColumn('games', 'score')) {
+                $table->float('score')->nullable();
+            }
         });
     }
 }

@@ -15,10 +15,6 @@
                 </div>
             @endif
 
-
-
-
-
             <form action="{{ route('me.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <!-- X-XSRF-TOKEN -->

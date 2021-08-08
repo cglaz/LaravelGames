@@ -26,7 +26,7 @@ class AlterGameTables extends Migration
     public function down()
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->dropColumn('genre_id');
+            $table->dropIfExists('genre_id');
         });
     }
 }
